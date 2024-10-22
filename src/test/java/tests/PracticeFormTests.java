@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -36,7 +34,7 @@ public class PracticeFormTests {
         String subject = "Maths";
         String hobby = "2"; // 1 - Sports, 2 - Reading, 3 - Music
         String hobbyText = "Reading"; // for assertion, change accordingly 'hobby'
-        String fileName = "build.gradle";
+        String fileName = "picture.png";
         String currentAddress = "currentAddressValue";
         String state = "NCR";
         String city = "Noida";
@@ -44,6 +42,9 @@ public class PracticeFormTests {
         // Filling the form
 
         open("https://demoqa.com/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
@@ -56,7 +57,7 @@ public class PracticeFormTests {
         $(".react-datepicker__day--0" + birthdayDay + ":not(.react-datepicker__day--outside-month)").scrollIntoView(true).click();
         $("#subjectsInput").setValue(subject).sendKeys(Keys.ENTER);
         $("#hobbies-checkbox-" + hobby + " + label").click();
-        $("#uploadPicture").uploadFile(new File(fileName));
+        $("#uploadPicture").uploadFromClasspath(fileName);
         $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#react-select-3-input").setValue(state).sendKeys(Keys.ENTER);
