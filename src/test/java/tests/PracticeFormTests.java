@@ -1,83 +1,117 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
+import Pages.RegistrationForm;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.Keys;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.*;
+@DisplayName("Student Registration Form tests")
+public class PracticeFormTests extends TestBase {
 
-public class PracticeFormTests {
+    @DisplayName("Positive test for filling the registration form (maximum)")
+    @Test
+    void positiveMaximumFormFillingTest() {
+        String
+                firstName = "firstNameValue",
+                lastName = "lastNameValue",
+                userEmail = "user@email.value",
+                gender = "Male",
+                userNumber = "1357902468",
+                birthdayDay = "10",
+                birthdayMonth = "November",
+                birthdayYear = "1996",
+                subject = "Maths",
+                hobby = "Reading",
+                pictureName = "picture.png",
+                currentAddress = "currentAddressValue",
+                state = "NCR",
+                city = "Noida";
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.pageLoadTimeout = 60000;
+        RegistrationForm registrationForm = new RegistrationForm();
+
+        registrationForm
+                .openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setUserEmail(userEmail)
+                .setGender(gender)
+                .setUserNumber(userNumber)
+                .setDateOfBirth(birthdayDay, birthdayMonth, birthdayYear)
+                .setSubject(subject)
+                .setHobby(hobby)
+                .uploadPicture(pictureName)
+                .setCurrentAddress(currentAddress)
+                .selectState(state)
+                .selectCity(city)
+                .clickSubmitButton()
+                .verifyResultsFormAppeared();
+
+        registrationForm
+                .verifyFieldValue("Student name", firstName + " " + lastName)
+                .verifyFieldValue("Student Email", userEmail)
+                .verifyFieldValue("Gender", gender)
+                .verifyFieldValue("Mobile", userNumber)
+                .verifyFieldValue("Date of Birth", birthdayDay + " " + birthdayMonth + "," + birthdayYear)
+                .verifyFieldValue("Subjects", subject)
+                .verifyFieldValue("Hobbies", hobby)
+                .verifyFieldValue("Picture", pictureName)
+                .verifyFieldValue("Address", currentAddress)
+                .verifyFieldValue("State and City", state + " " + city);
+
+        registrationForm.closeResultsForm();
     }
 
+    @DisplayName("Positive test for filling the registration form (minimum)")
     @Test
-    void fillFormTest() {
+    void positiveMinimumFormFillingTest() {
+        String
+                firstName = "anotherFirstNameValue",
+                lastName = "anotherLastNameValue",
+                gender = "Female",
+                userNumber = "9546128373",
+                hobby = "Music";
 
-        // Test data
+        RegistrationForm registrationForm = new RegistrationForm();
 
-        String firstName = "firstNameValue";
-        String lastName = "lastNameValue";
-        String userEmail = "user@email.value";
-        String gender = "1"; // 1 - Male, 2 - Female, 3 - Other
-        String genderText = "Male"; // for assertion, change accordingly 'gender'
-        String userNumber = "1357902468";
-        String birthdayYear = "1996";
-        int birthdayMonth = 10; // January = 0 ... December - 11
-        String birthdayMonthText = "November"; // for assertion, change accordingly 'birthdayMonth'
-        String birthdayDay = "10";
-        String subject = "Maths";
-        String hobby = "2"; // 1 - Sports, 2 - Reading, 3 - Music
-        String hobbyText = "Reading"; // for assertion, change accordingly 'hobby'
-        String fileName = "picture.png";
-        String currentAddress = "currentAddressValue";
-        String state = "NCR";
-        String city = "Noida";
+        registrationForm
+                .openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(gender)
+                .setUserNumber(userNumber)
+                .setHobby(hobby)
+                .clickSubmitButton()
+                .verifyResultsFormAppeared();
 
-        // Filling the form
+        registrationForm
+                .verifyFieldValue("Student name", firstName + " " + lastName)
+                .verifyFieldValue("Gender", gender)
+                .verifyFieldValue("Mobile", userNumber)
+                .verifyFieldValue("Hobbies", hobby);
 
-        open("https://demoqa.com/automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
+        registrationForm.closeResultsForm();
+    }
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(userEmail);
-        $("#gender-radio-" + gender + " + label").click();
-        $("#userNumber").setValue(userNumber);
-        $(".react-datepicker__input-container").click();
-        $(".react-datepicker__month-select").selectOption(birthdayMonth);
-        $(".react-datepicker__year-select").click();
-        $(".react-datepicker__year-select [value=\"" + birthdayYear + "\"]").scrollIntoView(true).click();
-        $(".react-datepicker__day--0" + birthdayDay + ":not(.react-datepicker__day--outside-month)").scrollIntoView(true).click();
-        $("#subjectsInput").setValue(subject).sendKeys(Keys.ENTER);
-        $("#hobbies-checkbox-" + hobby + " + label").click();
-        $("#uploadPicture").uploadFromClasspath(fileName);
-        $("#currentAddress").setValue(currentAddress);
-        $("#state").click();
-        $("#react-select-3-input").setValue(state).sendKeys(Keys.ENTER);
-        $("#city").click();
-        $("#react-select-4-input").setValue(city).sendKeys(Keys.ENTER);
-        $("#submit").click();
+    @DisplayName("Negative test for filling the registration form (wrong user number)")
+    @Test
+    void negativeFormFillingWrongNumberTest() {
+        String
+                firstName = "anotherFirstNameValue",
+                lastName = "anotherLastNameValue",
+                gender = "Female",
+                userNumber = "123456789",
+                hobby = "Music";
 
-        // Assertions
+        RegistrationForm registrationForm = new RegistrationForm();
 
-        $(".modal-body tr td:nth-child(2)", 0).shouldHave(text(firstName + " " + lastName)); // Student Name
-        $(".modal-body tr td:nth-child(2)", 1).shouldHave(text(userEmail)); // Student Email
-        $(".modal-body tr td:nth-child(2)", 2).shouldHave(text(genderText)); // Gender
-        $(".modal-body tr td:nth-child(2)", 3).shouldHave(text(userNumber)); // Mobile
-        $(".modal-body tr td:nth-child(2)", 4).shouldHave(text(birthdayDay + " " + birthdayMonthText + "," + birthdayYear)); // Date of birth
-        $(".modal-body tr td:nth-child(2)", 5).shouldHave(text(subject)); // Subjects
-        $(".modal-body tr td:nth-child(2)", 6).shouldHave(text(hobbyText)); // Hobbies
-        $(".modal-body tr td:nth-child(2)", 7).shouldHave(text(fileName)); // Picture
-        $(".modal-body tr td:nth-child(2)", 8).shouldHave(text(currentAddress)); // Address
-        $(".modal-body tr td:nth-child(2)", 9).shouldHave(text(state + " " + city)); // State and City
+        registrationForm
+                .openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setGender(gender)
+                .setUserNumber(userNumber)
+                .setHobby(hobby)
+                .clickSubmitButton();
 
-        $("#closeLargeModal").click();
+        registrationForm.verifyResultsFormNotAppeared();
     }
 }
