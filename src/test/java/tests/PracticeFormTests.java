@@ -3,6 +3,7 @@ package tests;
 import Pages.RegistrationForm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.TestDataGenerator;
 
 @DisplayName("Student Registration Form tests")
 public class PracticeFormTests extends TestBase {
@@ -11,25 +12,26 @@ public class PracticeFormTests extends TestBase {
     @Test
     void positiveMaximumFormFillingTest() {
         String
-                firstName = "firstNameValue",
-                lastName = "lastNameValue",
-                userEmail = "user@email.value",
-                gender = "Male",
-                userNumber = "1357902468",
-                birthdayDay = "10",
-                birthdayMonth = "November",
-                birthdayYear = "1996",
-                subject = "Maths",
-                hobby = "Reading",
-                pictureName = "picture.png",
-                currentAddress = "currentAddressValue",
-                state = "NCR",
-                city = "Noida";
+                firstName = TestDataGenerator.getFirstName(),
+                lastName = TestDataGenerator.getLastName(),
+                userEmail = TestDataGenerator.getUserEmail(),
+                gender = TestDataGenerator.getGender(),
+                userNumber = TestDataGenerator.getUserNumber(),
+                birthdayYear = TestDataGenerator.getBirthdayYear(),
+                birthdayMonth = TestDataGenerator.getBirthdayMonth(),
+                birthdayDay = TestDataGenerator.getBirthdayDay(birthdayMonth),
+                subject = TestDataGenerator.getSubject(),
+                hobby = TestDataGenerator.getHobby(),
+                pictureName = TestDataGenerator.getPictureName(),
+                currentAddress = TestDataGenerator.getCurrentAddress(),
+                state = TestDataGenerator.getState(),
+                city = TestDataGenerator.getCity(state);
 
         RegistrationForm registrationForm = new RegistrationForm();
 
         registrationForm
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -64,16 +66,17 @@ public class PracticeFormTests extends TestBase {
     @Test
     void positiveMinimumFormFillingTest() {
         String
-                firstName = "anotherFirstNameValue",
-                lastName = "anotherLastNameValue",
-                gender = "Female",
-                userNumber = "9546128373",
-                hobby = "Music";
+                firstName = TestDataGenerator.getFirstName(),
+                lastName = TestDataGenerator.getLastName(),
+                gender = TestDataGenerator.getGender(),
+                userNumber = TestDataGenerator.getUserNumber(),
+                hobby = TestDataGenerator.getHobby();
 
         RegistrationForm registrationForm = new RegistrationForm();
 
         registrationForm
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)
@@ -95,16 +98,17 @@ public class PracticeFormTests extends TestBase {
     @Test
     void negativeFormFillingWrongNumberTest() {
         String
-                firstName = "anotherFirstNameValue",
-                lastName = "anotherLastNameValue",
-                gender = "Female",
+                firstName = TestDataGenerator.getFirstName(),
+                lastName = TestDataGenerator.getLastName(),
+                gender = TestDataGenerator.getGender(),
                 userNumber = "123456789",
-                hobby = "Music";
+                hobby = TestDataGenerator.getHobby();
 
         RegistrationForm registrationForm = new RegistrationForm();
 
         registrationForm
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(gender)

@@ -33,6 +33,10 @@ public class RegistrationForm {
     public RegistrationForm openPage() {
         open("https://demoqa.com/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        return this;
+    }
+
+    public RegistrationForm removeBanners() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
