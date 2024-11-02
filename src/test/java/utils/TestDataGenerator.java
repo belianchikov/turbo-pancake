@@ -2,9 +2,26 @@ package utils;
 
 import com.github.javafaker.Faker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class TestDataGenerator {
 
     static Faker faker = new Faker();
+
+    static String dateString = faker.date().birthday(14, 99).toString();
+    static SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+    private static final Date birthDate;
+
+    static {
+        try {
+            birthDate = formatter.parse(dateString);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static String getFirstName() {
         return faker.name().firstName();
@@ -30,33 +47,19 @@ public class TestDataGenerator {
         return faker.number().digits(10);
     }
 
-    public static String getBirthdayDay(String month) {
-        return switch (month) {
-            case "February" -> String.format("%02d", faker.number().numberBetween(1, 29));
-            case "April", "June", "September", "November" -> String.format("%02d", faker.number().numberBetween(1, 31));
-            default -> String.format("%02d", faker.number().numberBetween(1, 32));
-        };
+    public static String getBirthdayDay() {
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
+        return dayFormat.format(birthDate);
     }
 
     public static String getBirthdayMonth() {
-        return faker.options().option(
-                "January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December"
-        );
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.ENGLISH);
+        return monthFormat.format(birthDate);
     }
 
     public static String getBirthdayYear() {
-        return String.valueOf(faker.number().numberBetween(1900, 2024));
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
+        return yearFormat.format(birthDate);
     }
 
     public static String getSubject() {

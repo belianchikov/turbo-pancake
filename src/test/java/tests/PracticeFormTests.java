@@ -19,7 +19,7 @@ public class PracticeFormTests extends TestBase {
                 userNumber = TestDataGenerator.getUserNumber(),
                 birthdayYear = TestDataGenerator.getBirthdayYear(),
                 birthdayMonth = TestDataGenerator.getBirthdayMonth(),
-                birthdayDay = TestDataGenerator.getBirthdayDay(birthdayMonth),
+                birthdayDay = TestDataGenerator.getBirthdayDay(),
                 subject = TestDataGenerator.getSubject(),
                 hobby = TestDataGenerator.getHobby(),
                 pictureName = TestDataGenerator.getPictureName(),
