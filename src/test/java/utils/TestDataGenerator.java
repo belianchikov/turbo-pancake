@@ -2,7 +2,6 @@ package utils;
 
 import com.github.javafaker.Faker;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -10,18 +9,6 @@ import java.util.Locale;
 public class TestDataGenerator {
 
     static Faker faker = new Faker();
-
-    static String dateString = faker.date().birthday(14, 99).toString();
-    static SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-    private static final Date birthDate;
-
-    static {
-        try {
-            birthDate = formatter.parse(dateString);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static String getFirstName() {
         return faker.name().firstName();
@@ -47,19 +34,21 @@ public class TestDataGenerator {
         return faker.number().digits(10);
     }
 
-    public static String getBirthdayDay() {
-        SimpleDateFormat dayFormat = new SimpleDateFormat("dd");
-        return dayFormat.format(birthDate);
+
+    public static Date getBirthDate() {
+        return faker.date().birthday(14, 99);
     }
 
-    public static String getBirthdayMonth() {
-        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.ENGLISH);
-        return monthFormat.format(birthDate);
+    public static String getBirthdayDay(Date birthDate) {
+        return new SimpleDateFormat("dd").format(birthDate);
     }
 
-    public static String getBirthdayYear() {
-        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
-        return yearFormat.format(birthDate);
+    public static String getBirthdayMonth(Date birthDate) {
+        return new SimpleDateFormat("MMMM", Locale.ENGLISH).format(birthDate);
+    }
+
+    public static String getBirthdayYear(Date birthDate) {
+        return new SimpleDateFormat("yyyy").format(birthDate);
     }
 
     public static String getSubject() {

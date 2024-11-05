@@ -1,7 +1,7 @@
-package Pages;
+package pages;
 
-import Pages.Components.CalendarComponent;
-import Pages.Components.FilledFormComponent;
+import pages.components.CalendarComponent;
+import pages.components.FilledFormComponent;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.*;

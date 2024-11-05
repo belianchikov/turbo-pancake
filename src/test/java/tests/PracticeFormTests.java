@@ -1,9 +1,11 @@
 package tests;
 
-import Pages.RegistrationForm;
+import pages.RegistrationForm;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import utils.TestDataGenerator;
+
+import java.util.Date;
 
 @DisplayName("Student Registration Form tests")
 public class PracticeFormTests extends TestBase {
@@ -11,15 +13,16 @@ public class PracticeFormTests extends TestBase {
     @DisplayName("Positive test for filling the registration form (maximum)")
     @Test
     void positiveMaximumFormFillingTest() {
+        Date birthdayDate = TestDataGenerator.getBirthDate();
         String
                 firstName = TestDataGenerator.getFirstName(),
                 lastName = TestDataGenerator.getLastName(),
                 userEmail = TestDataGenerator.getUserEmail(),
                 gender = TestDataGenerator.getGender(),
                 userNumber = TestDataGenerator.getUserNumber(),
-                birthdayYear = TestDataGenerator.getBirthdayYear(),
-                birthdayMonth = TestDataGenerator.getBirthdayMonth(),
-                birthdayDay = TestDataGenerator.getBirthdayDay(),
+                birthdayYear = TestDataGenerator.getBirthdayYear(birthdayDate),
+                birthdayMonth = TestDataGenerator.getBirthdayMonth(birthdayDate),
+                birthdayDay = TestDataGenerator.getBirthdayDay(birthdayDate),
                 subject = TestDataGenerator.getSubject(),
                 hobby = TestDataGenerator.getHobby(),
                 pictureName = TestDataGenerator.getPictureName(),
