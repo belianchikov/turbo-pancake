@@ -1,0 +1,17 @@
+{
+  "manufacturer": "Airbus",
+  "model": "A320neo",
+  "max_passengers": 194,
+  "range_km": 6300,
+  "engines": "CFM International LEAP-1A",
+  "dimensions": {
+    "length": 66,
+    "wingspan": 64,
+    "height": 17
+  },
+  "features": [
+    "Enhanced fuel efficiency",
+    "Quieter engines",
+    "Advanced cockpit technology"
+  ]
+}
