@@ -53,7 +53,7 @@
 <a id="jenkins"></a>
 ## <a name="Jenkins:">**Jenkins**</a>
 
-Сборка [Jenkins](https://jenkins.autotests.cloud/user/igorigor/my-views/view/all/job/C30_Belianchikov_HW14/)
+Сборка [Jenkins](https://jenkins.autotests.cloud/job/C30_Belianchikov_HW14/)
 
 <img src="src/test/resources/images/Jenkins_job.png" width="950">
 
