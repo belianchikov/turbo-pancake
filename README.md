@@ -1,18 +1,18 @@
 # Tests cases for [Stepik.org](https://stepik.org/) as homework for qa.guru:
 
-### Contents
+### Содержание
 
 * <a href="#project">Проект</a>
 * <a href="#jenkins">Jenkins</a>
+* <a href="#tools">Технологии и инструменты</a>
 * <a href="#allure">Allure Report</a>
-* <a href="#bot">Telegram Report</a>
+* <a href="#bot">Отчёт в telegram</a>
 
 ---
 <a id="project"></a>
-<h1 align="center">Project</h1>
+## <a name="Проект:">**Проект**</a>
 
-<img align="center" src="https://acdn.tinkoff.ru/static/pfa-multimedia/images/ae288629-59d7-4eb6-b074-8bb0549a43b6.svg" height="100" width="100" />
-
+<img src="https://stepik.org/static/frontend/topbar_logo_small.svg" height="100" width="100" />
 
 - Написать автотесты
 - Выложить проект на GitHub
@@ -37,36 +37,65 @@
 </p>
 
 ---
+
+<a id="tests"></a>
+## <a name="Список проверок:">**Список проверок**</a>
+
+* Проверка наличия поля поиска на главной странице
+* Проверка наличия кнопки выбора языка на главной странице
+* Проверка наличия кнопки Логина на главной странице
+* Проверка наличия кнопки Регистрации на главной странице
+* Проверка наличия ссылки на telegram на главной странице
+* Проверка наличия раздела рекомендованных курсов на главной странице
+
+---
+
 <a id="jenkins"></a>
-<h1 align="center">Jenkins</h1>
+## <a name="Jenkins:">**Jenkins**</a>
 
-Сборвка [Jenkins](https://jenkins.autotests.cloud/user/igorigor/my-views/view/all/job/C30_Belianchikov_HW14/)
+Сборка [Jenkins](https://jenkins.autotests.cloud/user/igorigor/my-views/view/all/job/C30_Belianchikov_HW14/)
 
-<img src="src/test/resources/images/Jenkins_job.jpg" width="950">
+<img src="src/test/resources/images/Jenkins_job.png" width="950">
 
-В качестве параметров можно выбрать:  
+В качестве параметров можно выбрать:
+
 - Browser
 - Screen size
 - Browser version
+
+## Команды для запуска из терминала
+
+Удалённый запуск через Jenkins:
+
+```
+clean 
+stepik_test 
+-Dbrowser=${browser}
+-Dbrowser_version=${browser_version}
+-DselenoidURL=${selenoidURL}
+-Dbrowser_size=${browser_size}
+```
+
 ---
 <a id="allure"></a>
-<h1 align="center">Allure Report</h1>
+## <a name="Allure Report:">**Allure Report**</a>
 
-Отчет о прохождениии тестов в [Allure Report](https://jenkins.autotests.cloud/user/igorigor/my-views/view/all/job/C30_Belianchikov_HW14/allure/)
+Отчет о прохождениии тестов
+в [Allure Report](https://jenkins.autotests.cloud/user/igorigor/my-views/view/all/job/C30_Belianchikov_HW14/allure/)
 
-<img src="src/test/resources/images/Allure_report.jpg" width="950">
+<img src="src/test/resources/images/Allure_report.png" width="950">
 
 ---
 <a id="bot"></a>
-<h1 align="center">Telegram Report</h1>
+## <a name="Telegram Report:">**Telegram Report**</a>
 
 Уведомление о прохождении тестов в Telegram:
 
-<img src="src/test/resources/images/tg_report.jpg" width="950">
+<img src="src/test/resources/images/tg_report.png" width="950">
 
 ---
 <a id="video"></a>
-<h1 align="center">Видео о прохождении тестов</h1>
+## <a name="Видео о прохождении тестов:">**Видео о прохождении тестов**</a>
 
 <p align="center">
 <img title="testResultsVideo" src="src/test/resources/images/test_run.gif" width="700" height="400"  alt="video">   
