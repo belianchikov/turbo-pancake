@@ -51,6 +51,6 @@ tasks.register('simple_test', Test) {
 }
 tasks.register('stepik_test', Test) {
     useJUnitPlatform {
-        includeTags("stepik")
+        includeTags("Stepik")
     }
 }
