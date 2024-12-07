@@ -31,7 +31,7 @@
 <a href="https://junit.org/junit5/"><img src="src/test/resources/images/JUnit5.svg" width="50" height="50"  alt="JUnit 5"/></a>  
 <a href="https://gradle.org/"><img src="src/test/resources/images/Gradle.svg" width="50" height="50"  alt="Gradle"/></a>  
 <a href="https://selenide.org/"><img src="src/test/resources/images/Selenide.svg" width="50" height="50"  alt="Selenide"/></a>  
-<a href="ht[images](images)tps://github.com/allure-framework/allure2"><img src="src/test/resources/images/Allure.svg" width="50" height="50"  alt="Allure"/></a>  
+<a href="https://github.com/allure-framework/allure2"><img src="src/test/resources/images/Allure.svg" width="50" height="50"  alt="Allure"/></a>  
 <a href="https://www.jenkins.io/"><img src="src/test/resources/images/Jenkins.svg" width="50" height="50"  alt="Jenkins"/></a>  
 <a href="https://aerokube.com/selenoid/"><img src="src/test/resources/images/Selenoid.svg" width="50" height="50"  alt="Selenoid"/></a>  
 </p>
